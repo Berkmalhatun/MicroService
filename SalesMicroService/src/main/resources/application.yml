@@ -1,0 +1,21 @@
+server:
+  port: 9092
+
+spring:
+  datasource:
+    driver-class-nam: org.postgresql.Driver
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/Java6MicroTekrarSalesDB
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+authservice:
+  bunu-ben-yazdım:
+    secret-key: ${JAVA6_SECRETKEY}
+    issuer: ${JAVA6_ISSUER}

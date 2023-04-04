@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/Berkmalhatun/config-server-repos.git"
+          default-label: main # burada hangı brench den alıcagını yazarsın.
+          skip-ssl-validation: true #ssl bu securityy sertıfakasıdır
+          username: berkmalhatun
+          password: ${GIT_CONFIG_KEY}

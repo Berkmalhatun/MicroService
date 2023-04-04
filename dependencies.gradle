@@ -1,0 +1,61 @@
+ext{
+    /**
+     * Bağımlılıkların versıyonlanması ıslemını yapıyoruz. Degerler K/V seklınde tutulur.
+     */
+    versions = [
+            springBoot      : "2.7.9",
+            springCloud     : "3.1.6",
+            lombok          : "1.18.26",
+            mapstruct       : "1.5.3.Final",
+            postgresql      : "42.5.4",
+            swaggerui       : "1.6.14",
+            jwt             : "4.3.0",
+            circuitbreaker  : "2.1.6",
+    ]
+    /**
+     * Bu kısımda bagımlılıkların lıstesını olusturuyoruz. K/V
+     * 1. Bagımlılık ıcın ad belırleyın.
+     * 2. : (iki nokta)
+     * 3. Projenın grupId sı (org.springframework.boot)
+     * 4. : (iki nokta)
+     * 5. ArtifactId (spring-boot-starter-web)
+     * 6. : (iki nokta)
+     * 7. Version numarası (v.0.01) ya da yukarıda belırtılen versıon adını eklıyoruz. ($versions.springBoot)
+     */
+    libs = [
+    springBootWeb               : "org.springframework.boot:spring-boot-starter-web:$versions.springBoot",
+    springBootDataJpa           : "org.springframework.boot:spring-boot-starter-data-jpa:$versions.springBoot",
+
+            //validasyon yanı email sıfre vs için
+    springBootValidation             : "org.springframework.boot:spring-boot-starter-validation:$versions.springBoot",
+            // mikroservis arası ıletısım ıcın
+    springCloudOpenFeign             : "org.springframework.cloud:spring-cloud-starter-openfeign:$versions.springCloud",
+            //configserver
+    springCloudConfigServer          : "org.springframework.cloud:spring-cloud-config-server:$versions.springCloud",
+    springCloudStarterConfig         : "org.springframework.cloud:spring-cloud-starter-config:$versions.springCloud",
+    springCloudConfigClient          : "org.springframework.cloud:spring-cloud-config-client:$versions.springCloud",
+            // GATEWAY mıkroservıslere tek bır yerden erısım ıcın eklenır.Sehrın surdan tek gırısı var.
+    springCloudStarterGateway        : "org.springframework.cloud:spring-cloud-starter-gateway:$versions.springCloud",
+    //circuitbreaker gateway ıle bırlıkte eklenmesı gerekır.Servıs ayaktamı degılmı kontrol eder
+    springCloudCircuitBreaker        : "org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:$versions.circuitbreaker",
+    springCloudCircuitBreakerReactor : "org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j:$versions.circuitbreaker",
+    //zipkin için gereklidir. Mikroservis ve configserver eklenmesı lazım. Cunku her yerı takıp edıcek her yerın ıletısımını gorucek
+    springCloudStarterSleuth         : "org.springframework.cloud:spring-cloud-starter-sleuth:$versions.springCloud",
+    springCloudZipkin                : "org.springframework.cloud:spring-cloud-sleuth-zipkin:$versions.springCloud",
+    // Rabbitmq için gereklıdır.Nerelerde kullanılacaksa oranın kutuphanesıne eklenmelı.Orn:Auth ve User
+    springBootAmqp                   : "org.springframework.boot:spring-boot-starter-amqp:$versions.springBoot",
+    //redis için gereklı.Sadece kullanıcagımız kısıma eklemek lazım.Bu projede Userprofile.
+    springBootStarterRedis           : "org.springframework.boot:spring-boot-starter-data-redis:$versions.springBoot",
+    //elasticsearch ıcın gereklıdır.DB olarak kullandık bu projede.O yuzden kendiMicroservisinde kullandık.
+    springBootStarterElasticsearch   : "org.springframework.boot:spring-boot-starter-data-elasticsearch:$versions.springBoot",
+
+    lombok                           : "org.projectlombok:lombok:$versions.lombok",
+    postgresql                       : "org.postgresql:postgresql:$versions.postgresql",
+    mapstruct                        : "org.mapstruct:mapstruct:$versions.mapstruct",
+    mapstructProcessor               : "org.mapstruct:mapstruct-processor:$versions.mapstruct",
+    swaggerui                        : "org.springdoc:springdoc-openapi-ui:$versions.swaggerui",
+    //token ıcın auth0 JWT eklenır
+    jwt                              : "com.auth0:java-jwt:$versions.jwt"
+
+    ]
+}

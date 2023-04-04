@@ -1,0 +1,44 @@
+server:
+  port: 9090
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672 #amqp portu gırılmelı
+    username: user
+    password: root
+  zipkin:
+    enabled: true
+    base-url: http://localhost:9411
+    service:
+      name: auth-service
+  datasource:
+    driver-class-nam: org.postgresql.Driver
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5432/Java6MicroTekrarAuthDB
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# !!!!!!!!!!! DIKKAT !!!!!!!!
+#Key/value kullanımında : dan sonra mutlaka bosluk bırakın
+#key:deger -> yanlıs cunku : dan sonra bosluk olmadan yazılmıs
+#key: deger -> dogru
+#Onemli
+# Sifre gıbı baskalarının gormesını ıstemedıgınız bılgılerın yml dosyasında dahı tutulması
+# cok sakıncalıdır. bu nedenşe bu bılgılerın gızlenmesı gereklıdır. Bu ıslemı yapabılmek ıcın
+# EnvironmentVariable - Sistem ortam degıskenlerı kullanmak gereklıdır.
+authservice:
+  bunu-ben-yazdım:
+    secret-key: ${JAVA6_SECRETKEY}
+    issuer: ${JAVA6_ISSUER}
+
+ornek:
+  deger1: bunedir
+  deger2: 4344232432432324
+  deger3: "buraya dikkat"
