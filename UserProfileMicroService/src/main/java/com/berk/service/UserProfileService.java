@@ -1,7 +1,9 @@
 package com.berk.service;
 
 import com.berk.dto.request.UserProfileSaveRequestDto;
+import com.berk.manager.IElasticServiceManager;
 import com.berk.mapper.IUserProfileMapper;
+import com.berk.rabbitmq.model.SaveAuthModel;
 import com.berk.repository.IUserProfileRepository;
 import com.berk.repository.entity.UserProfile;
 import com.berk.utility.ServiceManager;
@@ -13,15 +15,23 @@ import org.springframework.stereotype.Service;
 public class UserProfileService extends ServiceManager<UserProfile,Long> {
 
     private final IUserProfileRepository repository;
+    private final IElasticServiceManager elasticServiceManager;
 
-    public UserProfileService(IUserProfileRepository repository) {
+    public UserProfileService(IUserProfileRepository repository, IElasticServiceManager elasticServiceManager) {
         super(repository);
         this.repository = repository;
+        this.elasticServiceManager = elasticServiceManager;
     }
 
     public Boolean saveDto(UserProfileSaveRequestDto dto) {
     save(IUserProfileMapper.INSTANCE.toUserProfile(dto));
         return true;
+    }
+
+    public void saveRabbit(SaveAuthModel model){
+        UserProfile profile = IUserProfileMapper.INSTANCE.toUserProfile(model);
+        save(profile);
+        elasticServiceManager.addUser(profile);
     }
 
     /**

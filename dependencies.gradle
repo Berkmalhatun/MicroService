@@ -48,7 +48,8 @@ ext{
     springBootStarterRedis           : "org.springframework.boot:spring-boot-starter-data-redis:$versions.springBoot",
     //elasticsearch ıcın gereklıdır.DB olarak kullandık bu projede.O yuzden kendiMicroservisinde kullandık.
     springBootStarterElasticsearch   : "org.springframework.boot:spring-boot-starter-data-elasticsearch:$versions.springBoot",
-
+    // spring security . Devreye almak ıstenen mıkroservısının buıld gradle ına ekle
+    springBootStarterSecurity        : "org.springframework.boot:spring-boot-starter-security:$versions.springBoot",
     lombok                           : "org.projectlombok:lombok:$versions.lombok",
     postgresql                       : "org.postgresql:postgresql:$versions.postgresql",
     mapstruct                        : "org.mapstruct:mapstruct:$versions.mapstruct",

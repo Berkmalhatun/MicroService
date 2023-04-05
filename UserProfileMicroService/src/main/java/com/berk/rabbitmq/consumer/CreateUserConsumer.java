@@ -17,7 +17,9 @@ public class CreateUserConsumer {
     @RabbitListener(queues = "queue-auth") // burada hangı kuyrugu dınleyecegımızı belırtırız.Bu da RabbitConfig ıcınde
     public void createUserFromHandleQueue(SaveAuthModel model){
         System.out.println("Gelen Data...: "+ model.getUsername());
-    userProfileService.save(UserProfile.builder().authid(model.getAuthid())
-            .username(model.getUsername()).email(model.getEmail()).build());
+        // Bunu aynı zamanda elasticsearch de kaydetmek bu kodlarla olmaz. cunku bırı jpa bırı nosql. o yuzden yorum satırı aldım.
+  /*  userProfileService.save(UserProfile.builder().authid(model.getAuthid())
+            .username(model.getUsername()).email(model.getEmail()).build());*/
+        userProfileService.saveRabbit(model);
     }
 }
