@@ -28,7 +28,7 @@ return new DirectExchange(directExchangeAuth);
     public Binding bindingSaveDirectExchange(final Queue queueAuth , final  DirectExchange directExchangeAuth){ //bu method exchange ıle queue yı bırbırıne baglıcak
         return BindingBuilder.bind(queueAuth).to(directExchangeAuth).with(saveBindingKey);
         //bu yaptıgımız ıle rabbıtmq de queue kısmına bır kuyruk getırıyoruz. adı da queue-auth olcak
-        // yani bindingkey uzerınden bırbırlerıne baglanacaklar.
+        // yani bindingkey uzerınden bırbırlerıne baglanacaklar.//
     }
 
 }
