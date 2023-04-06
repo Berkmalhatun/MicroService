@@ -2,6 +2,7 @@ package com.berk.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -10,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @Configuration -> Konfigurasyon dosyası olarak spring e bıldırecegımız sınıflara eklıyoruz.
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ElasticSecurityConfig {
 
     @Bean
@@ -38,7 +40,7 @@ public class ElasticSecurityConfig {
        /* httpSecurity.authorizeRequests()
                 .anyRequest().authenticated(); bu hıc bır adrese erısım ıznı vermez.*/
         httpSecurity.authorizeRequests()
-                .antMatchers("/mylogin.html").permitAll()// bu adrese gıtmesıne ızın ver demek
+                .antMatchers("/mylogin.html","/v1/**").permitAll()// bu adrese gıtmesıne ızın ver demek
                 .anyRequest().authenticated();
         /**
          * Yetkısız gırıslerde kullanıcıların kendılerını dogrulamaları ıcın logın formuna yonlendırme yaparız.
